@@ -1,48 +1,71 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+<!DOCTYPE html>
+<html lang="en">
 
-        <x-validation-errors class="mb-4" />
+<head>
 
-        @session('status')
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ $value }}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Plot Makers - Login</title>
+
+    <link rel="stylesheet" href="{{asset('template/../../assets/vendors/mdi/css/materialdesignicons.min.css')}}">
+    <link rel="stylesheet" href="{{asset('template/../../assets/vendors/css/vendor.bundle.base.css')}}">
+
+    <link rel="stylesheet" href="{{asset('template/css/stylePurple.css')}}">
+
+    <link rel="shortcut icon" href="{{asset('template/images/logoTcc (1).png')}}" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper d-flex align-items-center auth">
+                <div class="row flex-grow">
+                    <div class="col-lg-4 mx-auto">
+                        <div class="auth-form-light text-left p-5">
+                            <div class="brand-logo">
+                                <img src="{{asset('template/images/logoTcc (1).png')}}" style="width: 70px; height: 70px; border-radius: 50px;">
+                            </div>
+                            <h4>Olá! Bem-vindo ao Plot Makers!</h4>
+                            <h6 class="font-weight-light">Faça login para continuar</h6>
+                            <form class="pt-3" method="POST" action="{{ route('login') }}">
+                                @csrf
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-lg" name="email" id="exampleInputEmail1" placeholder="Email" style="border-radius: 5px; border-color: #847f8b; required">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-lg" name="password" id="exampleInputPassword1" placeholder="Senha" style="border-radius: 5px; border-color: #847f8b; required">
+                                </div>
+                                <div class="mt-3">
+                                    <a class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" href="{{url('/pagPrincip')}}">Login</a>
+                                </div>
+
+                                <div class="text-center mt-4 font-weight-light"> Não possui conta? <a href="{{ url('/register') }}" class="text-primary">Crie uma agora!</a>
+                                </div>
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-        @endsession
+            <!-- content-wrapper ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+   
+    <script src="{{asset('template/../../assets/vendors/js/vendor.bundle.base.js')}}"></script>
+    
+    <script src="{{asset('template/../../assets/js/off-canvas.js')}}"></script>
+    <script src="{{asset('template/../../assets/js/hoverable-collapse.js')}}"></script>
+    <script src="{{asset('template/../../assets/js/misc.js')}}"></script>
+    
+</body>
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <div>
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            </div>
-
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ms-4">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-authentication-card>
-</x-guest-layout>
+</html>

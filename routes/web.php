@@ -10,10 +10,10 @@ use App\Http\Controllers\EdicaoController;
 use App\Http\Controllers\Auth\RegisterController;
 
 Route::get('/', function () {
-    return view('index');
+    return view('auth.login');
 });
 Route::get('/register', function () {
-    return view('register');
+    return view('auth.register');
 });
 Route::get('/edicao', function () {
     return view('edicao');
@@ -43,7 +43,16 @@ Route::resource('edicao', EdicaoController::class);
 Route::resource('publicar', PublicaController::class);
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
+Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
+Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 Route::resource('sobre', SobreController::class);
+
+/*Route::middleware(['auth'])->group(function () {
+    Route::get('/pagPrincip', [YourController::class, 'index'])->name('pagPrincip');
+});*/
 
 Route::middleware([
     'auth:sanctum',
@@ -54,3 +63,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

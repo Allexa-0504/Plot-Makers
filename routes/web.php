@@ -42,6 +42,7 @@ Route::resource('dica1', DicaController::class);
 Route::resource('edicao', EdicaoController::class);
 Route::resource('publicar', PublicaController::class);
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);

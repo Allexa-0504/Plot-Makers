@@ -28,21 +28,21 @@
                             <h6 class="font-weight-light">Preencha os dados abaixo para criar sua conta.</h6>
                             <form class="pt-3" method="POST" action="{{ route('register') }}">
                             @csrf
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" name="name" placeholder="Usuário" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control form-control-lg" name="email" placeholder="Email" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control form-control-lg" name="password" placeholder="Senha" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control form-control-lg" name="password" placeholder="Confirmar Senha" required>
-                                </div>
-                                <div class="mt-3">
-                                    <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">Criar Conta</button>
-                                </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-lg" name="name" id="name" placeholder="Nome" required style="border-radius: 5px; border-color: #847f8b;">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control form-control-lg" name="email" id="email" placeholder="Email" required style="border-radius: 5px; border-color: #847f8b;">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="Senha" required style="border-radius: 5px; border-color: #847f8b;">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control form-control-lg" name="password_confirmation" id="password_confirmation" placeholder="Confirmar Senha" required style="border-radius: 5px; border-color: #847f8b;">
+                            </div>
+                            <div class="mt-3">
+                                <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">Criar Conta</button>
+                            </div>
                                 @if ($errors->any())
                                     <div class="alert alert-danger">
                                         <ul>

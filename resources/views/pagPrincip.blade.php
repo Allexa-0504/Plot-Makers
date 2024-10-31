@@ -79,9 +79,6 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="{{url('/')}}">Página Principal</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="generos.html">Gêneros</a>
-                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="{{url('/dicas')}}" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dicas de escrita</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown04">
@@ -340,47 +337,6 @@
                             </div>
                         </div>
                         <!-- END sidebar-box -->
-                        <div class="sidebar-box">
-                            <h3 class="heading">Popular Posts</h3>
-                            <div class="post-entry-sidebar">
-                                <ul>
-                                    <li>
-                                        <a href="">
-                                            <img src="{{asset('template/images/img_2.jpg')}}" alt="Image placeholder" class="mr-4">
-                                            <div class="text">
-                                                <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h4>
-                                                <div class="post-meta">
-                                                    <span class="mr-2">11 de Janeiro, 2024</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2023/03/honkai-star-rail-march-7.jpg" alt="Image placeholder" class="mr-4">
-                                            <div class="text">
-                                                <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h4>
-                                                <div class="post-meta">
-                                                    <span class="mr-2">7 de Março, 2024</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <img src="{{asset('template/images/img_12.jpg')}}" alt="Image placeholder" class="mr-4">
-                                            <div class="text">
-                                                <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h4>
-                                                <div class="post-meta">
-                                                    <span class="mr-2">1 de abril, 2023</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- END sidebar-box -->
 
                         <div class="sidebar-box">
                             <h3 class="heading">Gêneros Literários</h3>
@@ -405,9 +361,7 @@
                                 <li><a href="#">Não-Ficção</a></li>
                                 <li><a href="#">Fantasia</a></li>
                                 <li><a href="#">Sci-fi</a></li>
-                                <li>
-                                    <a href="#">Terror</a>
-                                </li>
+                                <li><a href="#">Terror</a></li>
                                 <li><a href="#">Suspense</a></li>
                                 <li><a href="#">Fanfic</a></li>
                                 <li><a href="#">Novel</a></li>

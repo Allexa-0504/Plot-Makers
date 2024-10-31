@@ -189,10 +189,9 @@
                                 <div class="mb-5">
                                     <h3>Links Rápidos</h3>
                                     <ul class="list-unstyled">
-                                        <li><a href="about.html">Sobre nós</a></li>
-                                        <li><a href="category.html">Gêneros</a></li>
+                                        <li><a href="{{url('/about')}}">Sobre nós</a></li>
                                         <li><a href="{{url('/dicas')}}">Dicas de Escrita</a></li>
-                                        <li><a href="contact.html">Perfil</a></li>
+                                        <li><a href="{{url('/perfil')}}">Perfil</a></li>
                                         <li><a href="{{url('/pagPrincip')}}">Página Principal</a></li>
                                     </ul>
                                 </div>

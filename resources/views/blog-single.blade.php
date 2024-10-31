@@ -351,13 +351,13 @@
                         <div class="sidebar-box">
                             <h3 class="heading">Gêneros Literários</h3>
                             <ul class="categories">
-                                <li><a href="#">Poema <span>(12)</span></a></li>
-                                <li><a href="#">Conto <span>(22)</span></a></li>
-                                <li><a href="#">Crônica <span>(37)</span></a></li>
-                                <li><a href="#">Redação ENEM <span>(42)</span></a></li>
-                                <li><a href="#">História Ficcional <span>(104)</span></a></li>
-                                <li><a href="#">História Curta <span>(42)</span></a></li>
-                                <li><a href="#">Haicai <span>(14)</span></a></li>
+                                <li><a href="#">Poema <span>()</span></a></li>
+                                <li><a href="#">Conto <span>()</span></a></li>
+                                <li><a href="#">Crônica <span>()</span></a></li>
+                                <li><a href="#">Redação ENEM <span>()</span></a></li>
+                                <li><a href="#">História Ficcional <span>()</span></a></li>
+                                <li><a href="#">História Curta <span>()</span></a></li>
+                                <li><a href="#">Haicai <span>()</span></a></li>
                             </ul>
                         </div>
                         <!-- END sidebar-box -->
@@ -365,18 +365,6 @@
                         <div class="sidebar-box">
                             <h3 class="heading">Tags</h3>
                             <ul class="tags">
-                                <li><a href="#">Travel</a></li>
-                                <li><a href="#">Adventure</a></li>
-                                <li><a href="#">Food</a></li>
-                                <li><a href="#">Lifestyle</a></li>
-                                <li><a href="#">Business</a></li>
-                                <li><a href="#">Freelancing</a></li>
-                                <li><a href="#">Travel</a></li>
-                                <li><a href="#">Adventure</a></li>
-                                <li><a href="#">Food</a></li>
-                                <li><a href="#">Lifestyle</a></li>
-                                <li><a href="#">Business</a></li>
-                                <li><a href="#">Freelancing</a></li>
                             </ul>
                         </div>
                     </div>
@@ -459,10 +447,9 @@
                                     <h3>Links Rápidos</h3>
                                     <ul class="list-unstyled">
                                         <li><a href="{{url('/about')}}">Sobre nós</a></li>
-                                        <li><a href="category.html">Gêneros</a></li>
-                                        <li><a href="#">Dicas de Escrita</a></li>
-                                        <li><a href="contact.html">Perfil</a></li>
-                                        <li><a href="index.html">Página Principal</a></li>
+                                        <li><a href="{{url('/dicas')}}">Dicas de Escrita</a></li>
+                                        <li><a href="{{url('/perfil')}}">Perfil</a></li>
+                                        <li><a href="{{url('/pagPrincip')}}">Página Principal</a></li>
                                     </ul>
                                 </div>
 

@@ -79,9 +79,6 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="{{url('/pagPrincip')}}">Página Principal</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="generos.html">Gêneros</a>
-                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="{{url('/dicas')}}" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dicas de escrita</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown04">

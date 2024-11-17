@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('historia');
+        Schema::dropIfExists('historias');
     }
     public function up(): void
     {
-        Schema::create('historia', function (Blueprint $table) {
+        Schema::create('historias', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->primary();
             $table->unsignedBigInteger('usuario_id');
             $table->unsignedBigInteger('genero_id');
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('usuario_id')->references('id')->on('users');
-            $table->foreign('genero_id')->references('id')->on('genero');
+            $table->foreign('genero_id')->references('id')->on('generos');
         });
     }
 

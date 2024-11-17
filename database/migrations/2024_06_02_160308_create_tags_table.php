@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tag_historia', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->primary();
-            $table->unsignedBigInteger('tag_id');
-            $table->unsignedBigInteger('historia_id');
+            $table->string('nome');
             $table->timestamps();
-
-            $table->foreign('tag_id')->references('id')->on('tag');
-            $table->foreign('historia_id')->references('id')->on('historia');
         });
     }
 
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tag_historia');
+        Schema::dropIfExists('tags');
     }
 };

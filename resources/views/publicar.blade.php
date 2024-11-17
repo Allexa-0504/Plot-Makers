@@ -52,26 +52,40 @@
             </div>
             <div class="comment-form-wrap pt-5">
                 <h3 class="mb-5" style="margin-left: 40px;"> Configurações de texto</h3>
-                <form action="#" class="p-5 bg-light">
+                <form action="{{ route('publicar.store', ['id' => $historia->id]) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="form-group">
                         <label for="titulo">Título *</label>
-                        <input type="text" class="form-control" id="titulo">
+                        <input type="text" class="form-control" id="titulo" name="titulo" required>
                     </div>
                     <div class="form-group">
                         <label for="classificacao">Classificação *</label>
-                        <input type="number" class="form-control" id="classificacao">
+                        <input type="number" class="form-control" id="classificacao" name="classificacao" required>
                     </div>
                     <div class="form-group">
                         <label for="genero">Gênero *</label>
-                        <input type="text" class="form-control" id="genero">
+                        <select id="genero" name="genero" class="form-control" required>
+                            <option value="">Selecione um gênero</option>
+                            @foreach ($generos as $genero)
+                                <option value="{{ $genero->id }}">{{ $genero->nome }}</option>
+                            @endforeach
+                        </select>
                     </div>
-
                     <div class="form-group">
                         <label for="desc">Descrição *</label>
-                        <textarea name="" id="desc" cols="30" rows="10" class="form-control"></textarea>
+                        <textarea id="desc" cols="30" rows="10" class="form-control" name="descricao" required></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="imagem">Imagem de Capa</label>
+                        <input type="file" class="form-control" id="imagem" name="imagem">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Postar Texto" class="btn btn-primary" style="margin-top: 25px;">
+                    </div>
+                </form>
 
-                    <div class="card">
+
+                    <!--<div class="card">
                         <div class="card-body">
                             <h4 class="card-title text-black">Tags</h4>
                             <div class="add-items d-flex">
@@ -83,7 +97,7 @@
 
                     <div class="form-group">
                         <input type="submit" value="Postar Texto" class="btn btn-primary" style="margin-top: 25px;">
-                    </div>
+                    </div>-->
             </div>
 
 

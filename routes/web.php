@@ -15,9 +15,9 @@ Route::get('/', function () {
 Route::get('/register', function () {
     return view('auth.register');
 });
-Route::get('/edicao', function () {
+/*Route::get('/edicao', function () {
     return view('edicao');
-});
+});*/
 Route::get('/perfil', function () {
     return view('perfil');
 });
@@ -49,6 +49,10 @@ Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+Route::post('/edicao/{id}/conteudo', [PublicaController::class, 'storeConteudo'])->name('store.conteudo');
+Route::post('/publicar/{id}', [PublicaController::class, 'storeHistoria'])->name('publicar.store');
+Route::get('/edicao/{id}', [PublicaController::class, 'index'])->name('edicao');
+Route::get('/criar', [PublicaController::class, 'create'])->name('criar.historia');
 Route::resource('sobre', SobreController::class);
 
 /*Route::middleware(['auth'])->group(function () {

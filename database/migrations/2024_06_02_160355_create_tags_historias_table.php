@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('genero', function (Blueprint $table) {
+        Schema::create('tags_historias', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->primary();
-            $table->string('nome');
+            $table->unsignedBigInteger('tag_id');
+            $table->unsignedBigInteger('historia_id');
             $table->timestamps();
+
+            $table->foreign('tag_id')->references('id')->on('tags');
+            $table->foreign('historia_id')->references('id')->on('historias');
         });
     }
 
@@ -23,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('genero');
+        Schema::dropIfExists('tags_historias');
     }
 };

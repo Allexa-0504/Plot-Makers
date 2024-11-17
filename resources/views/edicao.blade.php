@@ -64,20 +64,28 @@
                 </div>
             </div>
 
-            <textarea id="default-editor">
-    <p placeholder="Escreva aqui..."><span style="text-decoration: underline;" ></span></p>
-  </textarea>
+            <form action="{{ route('store.conteudo', ['id' => $historia->id]) }}" method="POST">
+                @csrf
+                <textarea id="default-editor" name="conteudo">
+                    {{ old('conteudo', $historia->conteudo ?? '') }}
+                  <p placeholder="Escreva aqui..."><span style="text-decoration: underline;"></span></p>
+                </textarea>
 
-            <div class="button-send">
-                <form action="{{url('/pagPrincip')}}">
-                    <button class="btn-outline-primary" style="border-radius: 8px; margin-right: 10px;">Voltar</button> <br>
-                </form>
+                <div class="button-send">
+                    <button type="submit" class="btn-outline-primary" style="border-radius: 8px;">Continuar</button>
+                </div>
+            </form>
+            <form action="{{url('/pagPrincip')}}">
+                <button class="btn-outline-primary" style="border-radius: 8px; margin-right: 10px;">Voltar</button> <br>
+            </form>
 
-                <form action="{{url('/publicar')}}">
+            
+
+            <!--<form action="{{url('/publicar')}}">
                     <button class="btn-outline-primary" style="border-radius: 8px;">Continuar</button> <br>
                 </form>
-                <p>&nbsp;</p>
-            </div>
+                <p>&nbsp;</p>-->
+        </div>
 
 
             <!-- loader -->

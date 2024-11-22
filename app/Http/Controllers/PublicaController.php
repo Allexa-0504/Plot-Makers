@@ -1,75 +1,57 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Historia;
 use App\Models\Genero;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Historia; 
+use Illuminate\Http\Request;
 
 class PublicaController extends Controller
 {
-
-    public function create()
+    public function index(Request $request)
     {
-        $historia = Historia::create([
-            'usuario_id' => auth()->id(),
-            'genero_id' => null, // Ou um valor padrão
-            'titulo' => '',
-            'conteudo' => '',
-            'data_postada' => now(),
-            'destaque' => 0,
-        ]);
+        $conteudo = $request->input('conteudo');
+        $generos = Genero::all(); // Buscando todos os gêneros
 
-        return redirect()->route('edicao', ['id' => $historia->id]);
+        return view('publicar', compact('conteudo', 'generos'));
     }
 
-    public function index($id)
+    public function store(Request $request)
     {
-        $generos = Genero::all();  // Busca todos os gêneros
-        $historia = Historia::findOrFail($id); // Busca a história pelo ID
+        //dd(auth()->user()); 
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'Você precisa estar logado para publicar uma história.');
+        }
         
-        return view('edicao', compact('historia'));
-    }
-    // Armazena apenas o conteúdo da história
-    public function storeConteudo(Request $request, $id)
-    {
-        $request->validate([
-            'conteudo' => 'required|string',
-        ]);
-
-        $historia = Historia::findOrFail($id);
-        $historia->conteudo = $request->input('conteudo');
-        $historia->save();
-
-        return redirect()->route('publicar.index', ['id' => $id]);
-    }
-
-    // Armazena as outras informações da história
-    public function storeHistoria(Request $request, $id)
-    {
+        // Validação dos dados
         $request->validate([
             'titulo' => 'required|string|max:50',
-            'classificacao' => 'required|integer',
-            'genero' => 'required|string|max:255',
-            'descricao' => 'required|string',
-            'imagem' => 'nullable|image|max:2048', // 2 MB limite
+            //'classificacao' => 'required|integer',
+            'genero_id' => 'required|exists:generos,id',
+            'conteudo' => 'required|string',
+            'descricao' => 'nullable|string',
+            'capa' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validação da imagem
         ]);
 
-        $historia = Historia::findOrFail($id);
+        // Processar a imagem de capa
+        $capaPath = null;
+        if ($request->hasFile('capa')) {
+            $capaPath = $request->file('capa')->store('capas', 'public'); // Armazena a imagem na pasta 'storage/app/public/capas'
+    }
 
-        // Atualiza os outros campos da história
+        // Criar a nova história
+        $historia = new Historia();
         $historia->titulo = $request->titulo;
-        $historia->classificacao = $request->classificacao;
-        $historia->genero_id = $request->genero; // ajuste conforme necessário
+        //$historia->classificacao = $request->classificacao;
+        $historia->genero_id = $request->genero_id;
+        $historia->conteudo = $request->conteudo;
         $historia->descricao = $request->descricao;
-
-        if ($request->hasFile('imagem')) {
-            $path = $request->file('imagem')->store('imagens', 'public');
-            $historia->capa = $path;
-        }
-
+        $historia->capa = $capaPath; // Salvar o caminho da imagem de capa
+        $historia->usuario_id = auth()->id(); // ID do usuário autenticado
+        $historia->data_postada = now(); 
+        $historia->destaque = rand(0, 1);
         $historia->save();
 
-        return redirect()->route('publicar.success')->with('message', 'História publicada com sucesso!');
+        return redirect()->route('publicar.index')->with('success', 'História publicada com sucesso!');
     }
 }

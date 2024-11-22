@@ -12,13 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tags_historias', function (Blueprint $table) {
-            $table->unsignedBigInteger('id')->primary();
-            $table->unsignedBigInteger('tag_id');
-            $table->unsignedBigInteger('historia_id');
+            $table->id('id');
+            $table->foreignId('tag_id')->constrained('tags')->cascadeOnDelete();
+            $table->foreignId('historias_id')->constrained('historias')->cascadeOnDelete();
             $table->timestamps();
 
-            $table->foreign('tag_id')->references('id')->on('tags');
-            $table->foreign('historia_id')->references('id')->on('historias');
         });
     }
 

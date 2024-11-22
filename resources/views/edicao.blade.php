@@ -64,22 +64,24 @@
                 </div>
             </div>
 
-            <form action="{{ route('store.conteudo', ['id' => $historia->id]) }}" method="POST">
-                @csrf
+            <form action="{{ url('/publicar') }}" method="GET">
                 <textarea id="default-editor" name="conteudo">
-                    {{ old('conteudo', $historia->conteudo ?? '') }}
-                  <p placeholder="Escreva aqui..."><span style="text-decoration: underline;"></span></p>
+                    <p placeholder="Escreva aqui..."><span style="text-decoration: underline;"></span></p>
                 </textarea>
-
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="button-send">
-                    <button type="submit" class="btn-outline-primary" style="border-radius: 8px;">Continuar</button>
+                    <button class="btn-outline-primary" style="border-radius: 8px; margin-right: 10px;" type="button" onclick="window.location='{{ url('/pagPrincip') }}'">Voltar</button>
+                    <button class="btn-outline-primary" style="border-radius: 8px;" type="submit">Continuar</button>
                 </div>
             </form>
-            <form action="{{url('/pagPrincip')}}">
-                <button class="btn-outline-primary" style="border-radius: 8px; margin-right: 10px;">Voltar</button> <br>
-            </form>
-
-            
 
             <!--<form action="{{url('/publicar')}}">
                     <button class="btn-outline-primary" style="border-radius: 8px;">Continuar</button> <br>
@@ -91,6 +93,11 @@
             <!-- loader -->
             <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#6f42c1"/></svg></div>
 
+            <script>
+                document.querySelector('form').addEventListener('submit', function() {
+                    document.getElementById('conteudo').value = tinymce.get('default-editor').getContent();
+                });
+            </script>
             <script src="{{asset('template/js/jquery-3.2.1.min.js')}}"></script>
             <script src="{{asset('template/js/jquery-migrate-3.0.0.js')}}"></script>
             <script src="{{asset('template/js/popper.min.js')}}"></script>

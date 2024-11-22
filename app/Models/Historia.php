@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Historia extends Model
 {
@@ -25,23 +27,31 @@ class Historia extends Model
         'titulo',          // Título da história
         'conteudo',        // Conteúdo principal
         'descricao',       // Descrição da história
-        'classificacao',   // Classificação etária
+        //'classificacao',   // Classificação etária
         'data_postada',    // Data em que a história foi postada
         'destaque',        // Flag para destacar a história
         'capa',            // Caminho para a imagem de capa
     ];
+
+    protected $casts = [
+        'data_postada' => 'datetime',
+    ];
     
-    public function comentario(): HasMany
+    public function comentarios()
     {
-        return $this->hasMany(Comentario::class);
+        return $this->hasMany(Comentario::class, 'historia_id');
     }
     public function tag(): HasMany
     {
         return $this->hasMany(Tag::class);
     }
-    public function genero(): HasMany
+    public function genero(): BelongsTo
     {
-        return $this->hasMany(Genero::class);
+        return $this->belongsTo(Genero::class);
+    }
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'usuario_id'); 
     }
 
     use HasFactory;

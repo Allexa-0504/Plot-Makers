@@ -7,11 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comentario extends Model
 {
-
-    public function historia(): BelongsTo
-    {
-        return $this->belongsTo(Historia::class);
-    }
-    
     use HasFactory;
+
+    protected $table = 'comentarios';
+
+    protected $fillable = [
+        'usuario_id',
+        'historia_id',
+        'avaliacao', 
+        'conteudo',
+        'data_post',
+    ];
+
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'usuario_id');
+    }
+
+    public function historia()
+    {
+        return $this->belongsTo(Historia::class, 'historia_id');
+    }
 }

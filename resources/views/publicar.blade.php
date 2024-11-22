@@ -52,33 +52,43 @@
             </div>
             <div class="comment-form-wrap pt-5">
                 <h3 class="mb-5" style="margin-left: 40px;"> Configurações de texto</h3>
-                <form action="{{ route('publicar.store', ['id' => $historia->id]) }}" method="POST" enctype="multipart/form-data">
-                    @csrf
+                <form action="{{ url('/publicar/store') }}" method="POST" class="p-5 bg-light" enctype="multipart/form-data">
+                    @csrf<!--@method('POST')-->
                     <div class="form-group">
                         <label for="titulo">Título *</label>
                         <input type="text" class="form-control" id="titulo" name="titulo" required>
                     </div>
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="classificacao">Classificação *</label>
                         <input type="number" class="form-control" id="classificacao" name="classificacao" required>
-                    </div>
+                    </div>-->
                     <div class="form-group">
-                        <label for="genero">Gênero *</label>
-                        <select id="genero" name="genero" class="form-control" required>
+                        <label for="genero_id">Gênero *</label>
+                        <select class="form-control" id="genero_id" name="genero_id" required>
                             <option value="">Selecione um gênero</option>
-                            @foreach ($generos as $genero)
+                            @foreach($generos as $genero)
                                 <option value="{{ $genero->id }}">{{ $genero->nome }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="desc">Descrição *</label>
-                        <textarea id="desc" cols="30" rows="10" class="form-control" name="descricao" required></textarea>
+                        <textarea name="descricao" id="desc" cols="30" rows="10" class="form-control"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="imagem">Imagem de Capa</label>
-                        <input type="file" class="form-control" id="imagem" name="imagem">
+                        <label for="capa">Imagem de Capa *</label>
+                        <input type="file" class="form-control" id="capa" name="capa" accept="image/*" required>
                     </div>
+                    <!-- "usar tom-select"<div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title text-black">Tags</h4>
+                            <div class="add-items d-flex">
+                                <input type="text" class="form-control todo-list-input" placeholder="Insira o nome da tag">
+                                <button class="add btn btn-gradient-primary font-weight-bold todo-list-add-btn" id="add-task">Adicionar tag</button>
+                            </div>
+                        </div>
+                    </div>-->
+                    <input type="hidden" name="conteudo" value="{{ old('conteudo', $conteudo) }}">
                     <div class="form-group">
                         <input type="submit" value="Postar Texto" class="btn btn-primary" style="margin-top: 25px;">
                     </div>

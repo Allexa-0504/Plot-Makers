@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class GeneroSeeder extends Seeder
 {
@@ -22,12 +22,11 @@ class GeneroSeeder extends Seeder
             ['nome' => 'Fábula'],
             ['nome' => 'Ensaio'],
             ['nome' => 'Epístola'],
-            ['nome' => 'Dialógo'],
-
+            ['nome' => 'Diálogo'],
             // Adicione mais gêneros conforme necessário
         ];
 
-        // Insere os gêneros na tabela 'genero'
+        // Insere os gêneros na tabela 'generos'
         DB::table('generos')->insert($generos);
     }
 }

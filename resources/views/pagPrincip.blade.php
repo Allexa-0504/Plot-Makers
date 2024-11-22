@@ -112,126 +112,34 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <h2 class="mb-4">Postagens recentes</h2>
+                        <p>&nbsp</p> <br>
+                        <h2 class="mb-4">Postagens em destaque</h2>
                     </div>
                 </div>
                 <div class="row blog-entries">
                     <div class="col-md-12 col-lg-8 main-content">
                         <div class="row">
-                            <div class="col-md-6">
-                                <a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-                                    <img src="https://th.bing.com/th/id/OIP.I4X_ilJ5O8dMg1yrVXovmQHaEo?rs=1&pid=ImgDetMainimages/img_5.jpg" alt="Image placeholder">
-                                    <div class="blog-content-body">
-                                        <div class="post-meta">
-                                            <span class="author mr-2"><img src="{{asset('template/images/person_1.jpg')}}" alt="Colorlib"> Colorlib</span>&bullet;
-                                            <span class="mr-2">13 de Janeiro, 2024</span> &bullet;
-                                            <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
+                            @foreach($historiasDestaque as $historia)
+                                <div class="col-md-6">
+                                    <a href="{{ url('/historia', $historia->id) }}" class="blog-entry element-animate" data-animate-effect="fadeIn">
+                                        <img src="{{ asset('storage/' . $historia->capa) }}" alt="Imagem de capa">
+                                        <div class="blog-content-body">
+                                            <div class="post-meta">
+                                                <span class="author mr-2">{{ $historia->usuario->name }}</span>&bullet; <!-- Nome do usuário que postou -->
+                                                <span class="mr-2">{{ $historia->created_at->format('d/m/Y') }}</span> &bullet; <!-- Data da postagem -->
+                                            </div>
+                                            <h2>{{ $historia->descricao }}</h2> <!-- Descrição da história -->
                                         </div>
-                                        <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-6">
-                                <a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-                                    <img src="{{asset('template/images/img_6.jpg')}}" alt="Image placeholder">
-                                    <div class="blog-content-body">
-                                        <div class="post-meta">
-                                            <span class="author mr-2"><img src="{{asset('template/images/person_1.jpg')}}" alt="Colorlib"> Colorlib</span>&bullet;
-                                            <span class="mr-2">10 de Fevereiro, 2024</span> &bullet;
-                                            <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                                        </div>
-                                        <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-md-6">
-                                <a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-                                    <img src="{{asset('template/images/img_7.jpg')}}" alt="Image placeholder">
-                                    <div class="blog-content-body">
-                                        <div class="post-meta">
-                                            <span class="author mr-2"><img src="{{asset('template/images/person_1.jpg')}}" alt="Colorlib"> Colorlib</span>&bullet;
-                                            <span class="mr-2">1 de Janeiro, 2024</span> &bullet;
-                                            <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                                        </div>
-                                        <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-6">
-                                <a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-                                    <img src="{{asset('template/images/img_8.jpg')}}" alt="Image placeholder">
-                                    <div class="blog-content-body">
-                                        <div class="post-meta">
-                                            <span class="author mr-2"><img src="{{asset('template/images/person_1.jpg')}}" alt="Colorlib"> Colorlib</span>&bullet;
-                                            <span class="mr-2">18 de Junho, 2023</span> &bullet;
-                                            <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                                        </div>
-                                        <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-md-6">
-                                <a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-                                    <img src="{{asset('template/images/img_9.jpg')}}" alt="Image placeholder">
-                                    <div class="blog-content-body">
-                                        <div class="post-meta">
-                                            <span class="author mr-2"><img src="{{asset('template/images/person_1.jpg')}}" alt="Colorlib"> Colorlib</span>&bullet;
-                                            <span class="mr-2">14 de Março, 2024</span> &bullet;
-                                            <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                                        </div>
-                                        <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-6">
-                                <a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-                                    <img src="{{asset('template/images/img_10.jpg')}}" alt="Image placeholder">
-                                    <div class="blog-content-body">
-                                        <div class="post-meta">
-                                            <span class="author mr-2"><img src="{{asset('template/images/person_1.jpg')}}" alt="Colorlib"> Colorlib</span>&bullet;
-                                            <span class="mr-2">15 de Maio, 2023</span> &bullet;
-                                            <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                                        </div>
-                                        <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-md-6">
-                                <a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-                                    <img src="{{asset('template/images/img_11.jpg')}}" alt="Image placeholder">
-                                    <div class="blog-content-body">
-                                        <div class="post-meta">
-                                            <span class="author mr-2"><img src="{{asset('template/images/person_1.jpg')}}" alt="Colorlib"> Colorlib</span>&bullet;
-                                            <span class="mr-2">10 de Março, 2023</span> &bullet;
-                                            <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                                        </div>
-                                        <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-6">
-                                <a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-                                    <img src="{{asset('template/images/img_12.jpg')}}" alt="Image placeholder">
-                                    <div class="blog-content-body">
-                                        <div class="post-meta">
-                                            <span class="author mr-2"><img src="{{asset('template/images/person_1.jpg')}}" alt="Colorlib"> Colorlib</span>&bullet;
-                                            <span class="mr-2">1 de Abril, 2024</span> &bullet;
-                                            <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                                        </div>
-                                        <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-                                    </div>
-                                </a>
-                            </div>
+                                    </a>
+                                </div>
+                            @endforeach
                         </div>
 
                         <div class="row mt-5">
                             <div class="col-md-12 text-center">
                                 <nav aria-label="Page navigation" class="text-center">
                                     <ul class="pagination">
-                                        <li class="page-item  active"><a class="page-link" href="#">&lt;</a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">&lt;</a></li>
                                         <li class="page-item"><a class="page-link" href="#">1</a></li>
                                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                                         <li class="page-item"><a class="page-link" href="#">3</a></li>
@@ -242,32 +150,17 @@
                                 </nav>
                             </div>
                         </div>
-
-
-
-
-
-
                     </div>
 
                     <!-- END main-content -->
 
                     <div class="col-md-12 col-lg-4 sidebar">
-
-                        <!-- END sidebar-box -->
                         <div class="sidebar-box">
                             <div class="bio text-center">
-                                <img src="{{asset('template/images/person_1.jpg')}}" alt="Image Placeholder" class="img-fluid">
+                                <img src="{{ asset('template/images/OIP.jpg') }}" alt="Image Placeholder" class="img-fluid">
                                 <div class="bio-body">
-                                    <h2>Usuário 1</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facilis sunt repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga sit molestias minus.</p>
-                                    <p><a href="contact.html" class="btn btn-primary btn-sm rounded">Perfil</a></p>
-                                    <p class="social">
-                                        <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
-                                        <a href="#" class="p-2"><span class="fa fa-twitter"></span></a>
-                                        <a href="#" class="p-2"><span class="fa fa-instagram"></span></a>
-                                        <a href="#" class="p-2"><span class="fa fa-youtube-play"></span></a>
-                                    </p>
+                                    <h2>{{ $usuario ? $usuario->name : 'Visitante' }}</h2>
+                                    <p><a href="{{ url('/perfil') }}" class="btn btn-primary btn-sm rounded">Perfil</a></p>
                                 </div>
                             </div>
                         </div>
@@ -276,37 +169,14 @@
                         <div class="sidebar-box">
                             <h3 class="heading">Gêneros Literários</h3>
                             <ul class="categories">
-                                <li><a href="#">Poema <span>(12)</span></a></li>
-                                <li><a href="#">Conto <span>(22)</span></a></li>
-                                <li><a href="#">Crônica <span>(37)</span></a></li>
-                                <li><a href="#">Redação ENEM <span>(42)</span></a></li>
-                                <li><a href="#">História Ficcional <span>(104)</span></a></li>
-                                <li><a href="#">História Curta <span>(42)</span></a></li>
-                                <li><a href="#">Haicai <span>(14)</span></a></li>
+                                @foreach($generos as $genero) <!-- Loop pelos gêneros -->
+                                <li><a href="#">{{ $genero->nome }} <span>({{ $genero->postagens_count }})</span></a></li> <!-- Exibe o nome do gênero -->
+                                @endforeach
                             </ul>
                         </div>
                         <!-- END sidebar-box -->
-
-                        <div class="sidebar-box">
-                            <h3 class="heading">Tags</h3>
-                            <ul class="tags">
-                                <li><a href="#">Romance</a></li>
-                                <li><a href="#">Aventura</a></li>
-                                <li><a href="#">Ficção</a></li>
-                                <li><a href="#">Não-Ficção</a></li>
-                                <li><a href="#">Fantasia</a></li>
-                                <li><a href="#">Sci-fi</a></li>
-                                <li><a href="#">Terror</a></li>
-                                <li><a href="#">Suspense</a></li>
-                                <li><a href="#">Fanfic</a></li>
-                                <li><a href="#">Novel</a></li>
-                                <li><a href="#">Fábula</a></li>
-                                <li><a href="#">Lenda</a></li>
-                            </ul>
-                        </div>
                     </div>
                     <!-- END sidebar -->
-
                 </div>
             </div>
         </section>
@@ -332,11 +202,10 @@
                                 <div class="mb-5">
                                     <h3>Links Rápidos</h3>
                                     <ul class="list-unstyled">
-                                        <li><a href="about.html">Sobre nós</a></li>
-                                        <li><a href="category.html">Gêneros</a></li>
-                                        <li><a href="#">Dicas de Escrita</a></li>
-                                        <li><a href="contact.html">Perfil</a></li>
-                                        <li><a href="index.html">Página Principal</a></li>
+                                        <li><a href="{{url('/about')}}">Sobre nós</a></li>
+                                        <li><a href="{{url('/dicas')}}">Dicas de Escrita</a></li>
+                                        <li><a href="{{url('/perfil')}}">Perfil</a></li>
+                                        <li><a href="{{url('/pagPrincip')}}">Página Principal</a></li>
                                     </ul>
                                 </div>
 
@@ -379,7 +248,7 @@
     <script src="{{asset('template/js/popper.min.js')}}"></script>
     <script src="{{asset('template/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('template/js/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('templatejs/jquery.waypoints.min.js')}}"></script>
+    <script src="{{asset('template/js/jquery.waypoints.min.js')}}"></script>
     <script src="{{asset('template/js/jquery.stellar.min.js')}}"></script>
 
 

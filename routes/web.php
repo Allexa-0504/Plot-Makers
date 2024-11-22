@@ -7,68 +7,58 @@ use App\Http\Controllers\HistoriaController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\PublicaController;
 use App\Http\Controllers\EdicaoController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
+
+// Rota para a página de login
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::get('/perfil', [PerfilController::class, 'index'])->middleware('auth')->name('perfil');
+
+// Rota para registro
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
+
+// Rotas autenticadas
+Route::middleware(['auth'])->group(function () {
+    Route::get('/pagPrincip', [HomeController::class, 'index'])->name('home'); // Página principal
+    Route::post('/publicar/store', [PublicaController::class, 'store'])->name('publicar.store');
+});
+
+//Rotas para a exibição de histórias e comentários
+Route::get('/historia/{id}', [HistoriaController::class, 'show'])->name('historia.show');
+Route::post('/historia/{id}/comentarios', [ComentarioController::class, 'store'])->name('comentarios.store');
+
+// Rota para logout
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// Rotas de recursos
+//Route::resource('perfil', UserController::class);
+Route::resource('historia', HistoriaController::class);
+Route::resource('dica', DicaController::class);
+Route::resource('edicao', EdicaoController::class);
+Route::resource('publicar', PublicaController::class);
 
 Route::get('/', function () {
     return view('auth.login');
 });
-Route::get('/register', function () {
-    return view('auth.register');
-});
-/*Route::get('/edicao', function () {
-    return view('edicao');
-});*/
-Route::get('/perfil', function () {
-    return view('perfil');
-});
-Route::get('/publicar', function () {
-    return view('publicar');
-});
-Route::get('/dicas', function () {
-    return view('dicas');
-});
-Route::get('/pagPrincip', function () {
-    return view('pagPrincip');
-});
+
+// Rota para a página sobre
 Route::get('/about', function () {
     return view('about');
 });
 
-
-Route::resource('perfil', UserController::class);
-Route::resource('historia1', HistoriaController::class);
-Route::resource('pagPrincip', InicioController::class);
-Route::resource('dica1', DicaController::class);
-Route::resource('edicao', EdicaoController::class);
-Route::resource('publicar', PublicaController::class);
-Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [RegisterController::class, 'register'])->name('register');
-Route::post('/register', [RegisterController::class, 'register']);
-Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
-Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
-Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
-Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
-Route::post('/edicao/{id}/conteudo', [PublicaController::class, 'storeConteudo'])->name('store.conteudo');
-Route::post('/publicar/{id}', [PublicaController::class, 'storeHistoria'])->name('publicar.store');
-Route::get('/edicao/{id}', [PublicaController::class, 'index'])->name('edicao');
-Route::get('/criar', [PublicaController::class, 'create'])->name('criar.historia');
-Route::resource('sobre', SobreController::class);
-
-/*Route::middleware(['auth'])->group(function () {
-    Route::get('/pagPrincip', [YourController::class, 'index'])->name('pagPrincip');
-});*/
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+// Rota para dicas
+Route::get('/dicas', function () {
+    return view('dicas');
 });
 
-Auth::routes();
+Route::get('/historia', function () {
+    return view('blog-single');
+});
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Rotas padrão do Auth
+Auth::routes();

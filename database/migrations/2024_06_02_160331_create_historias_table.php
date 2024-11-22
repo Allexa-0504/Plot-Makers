@@ -16,18 +16,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('historias', function (Blueprint $table) {
-            $table->unsignedBigInteger('id')->primary();
-            $table->unsignedBigInteger('usuario_id');
-            $table->unsignedBigInteger('genero_id');
+            $table->id('id');
+            $table->foreignId('usuario_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('genero_id')->constrained('generos')->cascadeOnDelete();
             $table->string('titulo', 50);
             $table->longText('conteudo');
-            $table->dateTime('data_postada');
+            $table->timestamp('data_postada');
             $table->tinyInteger('destaque');
+            $table->text('descricao')->nullable();
             $table->string('capa', 255)->nullable();
             $table->timestamps();
 
-            $table->foreign('usuario_id')->references('id')->on('users');
-            $table->foreign('genero_id')->references('id')->on('generos');
         });
     }
 

@@ -3,16 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Historia;
 
 class HistoriaController extends Controller
 {
     public function index (){
-        return view('historia1');
-    }
-
-    public function create()
-    {
-        //
+        return view('blog-single');
     }
 
     /**
@@ -26,26 +22,22 @@ class HistoriaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $historia = Historia::with(['usuario', 'genero', 'comentarios.usuario'])->findOrFail($id);
+        $historia->data_postada = \Carbon\Carbon::parse($historia->data_postada);
+
+        // Formatar a data dos comentários
+        foreach ($historia->comentarios as $comentario) {
+            $comentario->data_post = \Carbon\Carbon::parse($comentario->data_post)->format('d/m/Y H:i');
+        }
+
+        return view('blog-single', [
+            'historia' => $historia,
+            'comentarios' => $historia->comentarios // Passando os comentários diretamente da história
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

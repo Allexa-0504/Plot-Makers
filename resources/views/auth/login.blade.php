@@ -36,7 +36,7 @@
                                     <input type="password" class="form-control form-control-lg" name="password" id="exampleInputPassword1" placeholder="Senha" style="border-radius: 5px; border-color: #847f8b; required">
                                 </div>
                                 <div class="mt-3">
-                                    <a class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" href="{{url('/pagPrincip')}}">Login</a>
+                                    <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">Login</button>
                                 </div>
 
                                 <div class="text-center mt-4 font-weight-light"> Não possui conta? <a href="{{ url('/register') }}" class="text-primary">Crie uma agora!</a>

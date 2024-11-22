@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('generos', function (Blueprint $table) {
-            $table->unsignedBigInteger('id')->primary();
+            $table->id('id')->primary();
             $table->string('nome');
             $table->timestamps();
         });

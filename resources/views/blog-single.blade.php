@@ -116,20 +116,50 @@
                     <h3 class="mb-5">Comentários</h3>
                     <ul class="comment-list">
                         @if(isset($comentarios) && $comentarios->isNotEmpty())
-                            @foreach($comentarios as $comentario)
-                                <li class="comment">
-                                    <div class="vcard">
-                                        <img src="{{ asset('template/images/OIP.jpg') }}" alt="manter essa imagem">
-                                    </div>
-                                    <div class="comment-body">
-                                        <h3>{{ $comentario->usuario->name }}</h3>
-                                        <div class="meta">{{ $comentario->data_post }}</div>
-                                        <p>Avaliação: {{ $comentario->avaliacao }}</p>
-                                        <p>{{ $comentario->conteudo }}</p>
-                                        <p><a href="#" class="reply rounded">Reply</a></p>
-                                    </div>
-                                </li>
-                            @endforeach
+                        @foreach($comentarios as $comentario)
+                            <li class="comment" id="comment-{{ $comentario->id }}">
+                                <div class="vcard">
+                                    <img src="{{ asset('template/images/OIP.jpg') }}" alt="manter essa imagem">
+                                </div>
+                                <div class="comment-body">
+                                    <h3>{{ $comentario->usuario->name }}</h3>
+                                    <div class="meta">{{ $comentario->data_post }}</div>
+                                    <p>Avaliação: {{ $comentario->avaliacao }}</p>
+                                    <p>{{ $comentario->conteudo }}</p>
+                                    @if($comentario->usuario_id === auth()->id())
+                                        <p>
+                                            <button class="btn btn-warning edit-comment" data-comment-id="{{ $comentario->id }}">Editar</button>
+                                            <form action="{{ route('comentarios.destroy', $comentario->id) }}" method="POST" style="display:inline;" class="delete-comment-form">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger delete-comment" onclick="return confirm('Tem certeza que deseja excluir este comentário?');">Excluir</button>
+                                            </form>
+                                        </p>
+                                    @endif
+                                </div>
+
+                                <!-- Formulário de edição oculto -->
+                                <div class="edit-form" id="edit-form-{{ $comentario->id }}" style="display: none;">
+                                    <form action="{{ route('comentarios.update', $comentario->id) }}" method="POST" class="edit-comment-form">
+                                        @csrf
+                                        @method('PUT')
+
+                                        <div class="form-group">
+                                            <label for="conteudo">Conteúdo</label>
+                                            <textarea class="form-control" name="conteudo" required>{{ old('conteudo', $comentario->conteudo) }}</textarea>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="avaliacao">Avaliação</label>
+                                            <input type="number" class="form-control" name="avaliacao" value="{{ old('avaliacao', $comentario->avaliacao) }}" min="1" max="10" required>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary">Atualizar Comentário</button>
+                                        <button type="button" class="btn btn-secondary cancel-edit">Cancelar</button>
+                                    </form>
+                                </div>
+                            </li>
+                        @endforeach
                         @else
                             <li class="comment">Nenhum comentário encontrado.</li>
                         @endif
@@ -219,6 +249,26 @@
     <!-- loader -->
     <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#6f42c1"/></svg></div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mostrar o formulário de edição
+            document.querySelectorAll('.edit-comment').forEach(button => {
+                button.addEventListener('click', function () {
+                    const commentId = this.getAttribute('data-comment-id');
+                    const editForm = document.getElementById('edit-form-' + commentId);
+                    editForm.style.display = 'block'; // Mostra o formulário
+                });
+            });
+
+            // Ocultar o formulário de edição
+            document.querySelectorAll('.cancel-edit').forEach(button => {
+                button.addEventListener('click', function () {
+                    const editForm = this.closest('.edit-form');
+                    editForm.style.display = 'none'; // Esconde o formulário
+                });
+            });
+        });
+    </script>
     <script src="{{asset('template/js/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('template/js/jquery-migrate-3.0.0.js')}}"></script>
     <script src="{{asset('template/js/popper.min.js')}}"></script>

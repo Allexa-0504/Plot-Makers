@@ -16,7 +16,11 @@ use App\Http\Controllers\Auth\LoginController;
 // Rota para a página de login
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
-Route::get('/perfil', [PerfilController::class, 'index'])->middleware('auth')->name('perfil');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil');
+    Route::get('/perfil/edit', [PerfilController::class, 'edit'])->name('perfil.edit');
+    Route::post('/perfil/update', [PerfilController::class, 'update'])->name('perfil.update');
+});
 
 // Rota para registro
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
@@ -24,13 +28,17 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 
 // Rotas autenticadas
 Route::middleware(['auth'])->group(function () {
-    Route::get('/pagPrincip', [HomeController::class, 'index'])->name('home'); // Página principal
+    Route::get('/pagPrincip', [HomeController::class, 'index'])->name('pagPrincip'); // Página principal
     Route::post('/publicar/store', [PublicaController::class, 'store'])->name('publicar.store');
 });
 
-//Rotas para a exibição de histórias e comentários
+//Rotas para histórias e comentários
 Route::get('/historia/{id}', [HistoriaController::class, 'show'])->name('historia.show');
+Route::get('/historias/{id}/edit', [PublicaController::class, 'edit'])->name('historias.edit');
+Route::put('/historias/{id}', [PublicaController::class, 'update'])->name('historias.update');
+Route::delete('/historias/{id}', [PublicaController::class, 'destroy'])->name('historias.destroy');
 Route::post('/historia/{id}/comentarios', [ComentarioController::class, 'store'])->name('comentarios.store');
+Route::resource('comentarios', ComentarioController::class)->only(['edit', 'update', 'destroy']);
 
 // Rota para logout
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

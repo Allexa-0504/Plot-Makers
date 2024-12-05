@@ -7,6 +7,14 @@ body {
     color: #6c757d;
 }
 
+.edit-form {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
 a {
     -webkit-transition: .3s all ease;
     -o-transition: .3s all ease;

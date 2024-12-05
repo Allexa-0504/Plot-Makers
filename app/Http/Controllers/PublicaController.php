@@ -1,57 +1,52 @@
-<?php
+// PerfilController.php
 
 namespace App\Http\Controllers;
 
-use App\Models\Genero;
-use App\Models\Historia; 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
-class PublicaController extends Controller
+class PerfilController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $conteudo = $request->input('conteudo');
-        $generos = Genero::all(); // Buscando todos os gêneros
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Você precisa estar logado para acessar o perfil.');
+        }
 
-        return view('publicar', compact('conteudo', 'generos'));
+        $usuario = Auth::user()->load('historias'); // Carrega as histórias do usuário
+        return view('perfil', compact('usuario'));
     }
 
-    public function store(Request $request)
+    public function edit()
     {
-        //dd(auth()->user()); 
-        if (!auth()->check()) {
-            return redirect()->route('login')->with('error', 'Você precisa estar logado para publicar uma história.');
-        }
-        
-        // Validação dos dados
+        $usuario = Auth::user();
+        return view('editarPerfil', compact('usuario'));
+    }
+
+    public function update(Request $request)
+    {
         $request->validate([
-            'titulo' => 'required|string|max:50',
-            //'classificacao' => 'required|integer',
-            'genero_id' => 'required|exists:generos,id',
-            'conteudo' => 'required|string',
-            'descricao' => 'nullable|string',
-            'capa' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validação da imagem
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . Auth::id(),
+            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Processar a imagem de capa
-        $capaPath = null;
-        if ($request->hasFile('capa')) {
-            $capaPath = $request->file('capa')->store('capas', 'public'); // Armazena a imagem na pasta 'storage/app/public/capas'
-    }
+        $usuario = Auth::user();
+        $usuario->name = $request->name;
+        $usuario->email = $request->email;
 
-        // Criar a nova história
-        $historia = new Historia();
-        $historia->titulo = $request->titulo;
-        //$historia->classificacao = $request->classificacao;
-        $historia->genero_id = $request->genero_id;
-        $historia->conteudo = $request->conteudo;
-        $historia->descricao = $request->descricao;
-        $historia->capa = $capaPath; // Salvar o caminho da imagem de capa
-        $historia->usuario_id = auth()->id(); // ID do usuário autenticado
-        $historia->data_postada = now(); 
-        $historia->destaque = rand(0, 1);
-        $historia->save();
+        // Processar a imagem de perfil se fornecida
+        if ($request->hasFile('profile_photo')) {
+            // Excluir a imagem antiga se existir
+            if ($usuario->profile_photo_path) {
+                Storage::disk('public')->delete($usuario->profile_photo_path);
+            }
+            $usuario->profile_photo_path = $request->file('profile_photo')->store('profile_photos', 'public');
+        }
 
-        return redirect()->route('publicar.index')->with('success', 'História publicada com sucesso!');
+        $usuario->save();
+
+        return redirect()->route('perfil')->with('success', 'Perfil atualizado com sucesso!');
     }
 }

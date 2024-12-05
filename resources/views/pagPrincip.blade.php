@@ -125,15 +125,17 @@
                                         <img src="{{ asset('storage/' . $historia->capa) }}" alt="Imagem de capa">
                                         <div class="blog-content-body">
                                             <div class="post-meta">
-                                                <span class="author mr-2">{{ $historia->usuario->name }}</span>&bullet; <!-- Nome do usuário que postou -->
-                                                <span class="mr-2">{{ $historia->created_at->format('d/m/Y') }}</span> &bullet; <!-- Data da postagem -->
+                                                <span class="author mr-2">{{ $historia->usuario->name }}</span>&bullet; 
+                                                <span class="mr-2">{{ $historia->created_at->format('d/m/Y') }}</span> &bullet; 
                                             </div>
-                                            <h2>{{ $historia->descricao }}</h2> <!-- Descrição da história -->
+                                            <h2>{{ $historia->descricao }}</h2> <br>
                                         </div>
-                                    </a>
+                                    
+                                    
                                 </div>
                             @endforeach
                         </div>
+
 
                         <div class="row mt-5">
                             <div class="col-md-12 text-center">

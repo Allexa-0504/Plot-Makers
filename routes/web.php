@@ -39,6 +39,7 @@ Route::put('/historias/{id}', [PublicaController::class, 'update'])->name('histo
 Route::delete('/historias/{id}', [PublicaController::class, 'destroy'])->name('historias.destroy');
 Route::post('/historia/{id}/comentarios', [ComentarioController::class, 'store'])->name('comentarios.store');
 Route::resource('comentarios', ComentarioController::class)->only(['edit', 'update', 'destroy']);
+Route::post('/tags', [PublicaController::class, 'createTag'])->name('tags.create');
 
 // Rota para logout
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

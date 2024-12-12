@@ -128,7 +128,7 @@
                                                 <span class="author mr-2">{{ $historia->usuario->name }}</span>&bullet; 
                                                 <span class="mr-2">{{ $historia->created_at->format('d/m/Y') }}</span> &bullet; 
                                             </div>
-                                            <h2>{{ $historia->descricao }}</h2> <br>
+                                            <h2>{!! Str::limit($historia->titulo, 100) !!}</h2> <br>
                                         </div>
                                     
                                     
@@ -159,7 +159,7 @@
                     <div class="col-md-12 col-lg-4 sidebar">
                         <div class="sidebar-box">
                             <div class="bio text-center">
-                                <img src="{{ asset('template/images/OIP.jpg') }}" alt="Image Placeholder" class="img-fluid">
+                            <img src="{{ $usuario->profile_photo_path ? asset('storage/' . $usuario->profile_photo_path) : asset('template/images/OIP.jpg') }}" alt="Image Placeholder" class="img-fluid">
                                 <div class="bio-body">
                                     <h2>{{ $usuario ? $usuario->name : 'Visitante' }}</h2>
                                     <p><a href="{{ url('/perfil') }}" class="btn btn-primary btn-sm rounded">Perfil</a></p>

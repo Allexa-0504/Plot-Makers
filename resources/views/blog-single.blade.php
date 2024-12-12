@@ -103,6 +103,15 @@
                             <span class="ml-2"><span class="fa fa-comments"></span> {{ $historia->comentarios->count() }}</span>
                         </div>
                         <h1 class="mb-4">{{ $historia->titulo }}</h1>
+                        <div class="tags mb-5">
+                            @if($historia->tags->isNotEmpty())
+                                @foreach($historia->tags as $tag)
+                                    <div class="category mb-5">{{ $tag->nome }}</div>
+                                @endforeach
+                            @else
+                                <div class="category mb-5">Nenhuma tag disponível.</div>
+                            @endif
+                        </div>
 
                         <div class="post-content-body">
                             <p>{!! $historia->conteudo !!}</p>

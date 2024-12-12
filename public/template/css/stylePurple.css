@@ -4484,7 +4484,7 @@ progress {
     color: #212529;
     background-color: color(white);
     background-clip: padding-box;
-    border: 1px solid #6610f2;
+    border: 1px solid #212529;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -5519,7 +5519,7 @@ fieldset:disabled .btn {
 .btn-primary.active,
 .show>.btn-primary.dropdown-toggle {
     color: #000;
-    background-color: #c58aff;
+    background-color: #6610f2;
     border-color: #bd7cff;
 }
 

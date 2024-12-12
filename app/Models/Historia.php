@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use \Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Historia extends Model
 {
@@ -27,7 +28,6 @@ class Historia extends Model
         'titulo',          // Título da história
         'conteudo',        // Conteúdo principal
         'descricao',       // Descrição da história
-        //'classificacao',   // Classificação etária
         'data_postada',    // Data em que a história foi postada
         'destaque',        // Flag para destacar a história
         'capa',            // Caminho para a imagem de capa
@@ -41,9 +41,9 @@ class Historia extends Model
     {
         return $this->hasMany(Comentario::class, 'historia_id');
     }
-    public function tag(): HasMany
+    public function tags()
     {
-        return $this->hasMany(Tag::class);
+        return $this->belongsToMany(Tag::class, 'tags_historias', 'historia_id', 'tag_id');
     }
     public function genero(): BelongsTo
     {

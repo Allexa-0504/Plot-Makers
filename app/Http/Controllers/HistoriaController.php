@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Historia;
+use App\Models\Tag;
 
 class HistoriaController extends Controller
 {
@@ -24,7 +25,7 @@ class HistoriaController extends Controller
      */
     public function show($id)
     {
-        $historia = Historia::with(['usuario', 'genero', 'comentarios.usuario'])->findOrFail($id);
+        $historia = Historia::with(['usuario', 'genero', 'comentarios.usuario', 'tags'])->findOrFail($id);
         $historia->data_postada = \Carbon\Carbon::parse($historia->data_postada);
 
         // Formatar a data dos comentários

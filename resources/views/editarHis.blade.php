@@ -9,13 +9,15 @@
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300, 400,700|Inconsolata:400,700" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('template/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('template/css/style.css') }}">
-    <link rel="icon" type="image/png" href="{{asset('template/images/logoTcc (1).png')}}">
+    <link rel="stylesheet" href="{{ asset('template/css/stylePurple.css') }}">
+    <link rel="icon" type="image/png" href="{{ asset('template/images/logoTcc (1).png') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@latest/dist/css/tom-select.css">
 
-    <!-- Adicionando o TinyMCE -->
+    <!-- TinyMCE -->
     <script src="https://cdn.tiny.cloud/1/d4vqpyrvlfvi7twx1sort0x4jt8otg57nab1qg24c7yzotsg/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
-            selector: '#conteudo', // Seletor do textarea
+            selector: '#conteudo',
             plugins: 'lists link image preview',
             toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | link image | preview',
             height: 300
@@ -61,8 +63,7 @@
 
                 <div class="form-group" style="width: 76vw; justify-content: center;">
                     <label for="desc" style="display: flex; align-self: flex-start; margin-left: 5px;">Descrição *</label>
-                    <textarea name="descricao" id="desc" cols="30" rows="10" class="form-control" style="align-self: flex-end; margin-left: 55px;">{{ $historia->descricao }}</textarea>
-                </div>
+                    <textarea name="descricao" id="desc" cols="30" rows="10" class="form-control" style="align-self: flex-end; margin-left: 55px;">{{ $historia->descricao }}</textarea </div>
 
                 <div class="form-group" style="width: 76vw; justify-content: center;">
                     <label for="conteudo" style="display: flex; align-self: flex-start; margin-left: 5px;">Conteúdo *</label>
@@ -75,7 +76,15 @@
                     <small style="margin-left: 55px;">Obs: Deixe em branco caso não queira alterar a imagem de capa.</small>
                 </div>
 
-                
+                <div class="form-group" style="width: 76vw; justify-content: center;">
+                    <label for="tags" style="display: flex; align-self: flex-start; margin-left: 5px;">Tags</label>
+                    <select id="tags" name="tags[]" multiple class="form-control" style="height: 45px; align-self: flex-end; margin-left: 55px;">
+                        @foreach($tags as $tag)
+                            <option value="{{ $tag->id }}" {{ $historia->tags->contains($tag->id) ? 'selected' : '' }}>{{ $tag->nome }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <div class="form-group">
                     <input type="submit" value="Atualizar História" class="btn btn-primary" style="margin-top: 25px; margin-left: 10px; margin-bottom: 10px;">
                 </div>
@@ -85,6 +94,15 @@
 
     <script src="{{ asset('template/js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('template/js/bootstrap.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@latest/dist/js/tom-select.complete.min.js"></script>
+    <script>
+        new TomSelect('#tags', {
+            create: true, // Permite a criação de novas tags
+            onItemAdd: function(value) {
+                // Aqui você pode adicionar lógica para criar a tag no banco de dados via AJAX, se necessário
+            }
+        });
+    </script>
 </body>
 
 </html>

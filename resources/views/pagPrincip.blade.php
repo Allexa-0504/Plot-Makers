@@ -171,8 +171,12 @@
                         <div class="sidebar-box">
                             <h3 class="heading">Gêneros Literários</h3>
                             <ul class="categories">
-                                @foreach($generos as $genero) <!-- Loop pelos gêneros -->
-                                <li><a href="#">{{ $genero->nome }} <span>({{ $genero->postagens_count }})</span></a></li> <!-- Exibe o nome do gênero -->
+                                @foreach($generos as $genero)
+                                    <li>
+                                        <a href="{{ route('genero.show', $genero->id) }}">
+                                            {{ $genero->nome }} <span>({{ $genero->postagens_count }})</span>
+                                        </a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </div>

@@ -12,6 +12,7 @@ use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\GeneroController;
 
 // Rota para a página de login
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -43,6 +44,9 @@ Route::post('/tags', [PublicaController::class, 'createTag'])->name('tags.create
 
 // Rota para pesquisa
 Route::get('/pesquisar', [PublicaController::class, 'pesquisar'])->name('pesquisar');
+
+// Rota para as páginas de genêro
+Route::get('/genero/{id}', [GeneroController::class, 'show'])->name('genero.show');
 
 // Rota para logout
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

@@ -86,6 +86,20 @@ class PublicaController extends Controller
         $tags = Tag::all();
         return view('editarHis', compact('historia', 'generos','tags'));
     }
+    public function pesquisar(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Pesquisar histórias pelo título ou tags
+        $historias = Historia::where('titulo', 'LIKE', "%{$query}%")
+            ->orWhereHas('tags', function ($q) use ($query) {
+                $q->where('nome', 'LIKE', "%{$query}%");
+            })
+            ->get();
+
+        // Retornar a view com os resultados da pesquisa
+        return view('pesquisa', compact('historias', 'query'));
+    }
 
     public function update(Request $request, $id)
     {

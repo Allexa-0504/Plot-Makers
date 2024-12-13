@@ -41,6 +41,9 @@ Route::post('/historia/{id}/comentarios', [ComentarioController::class, 'store']
 Route::resource('comentarios', ComentarioController::class)->only(['edit', 'update', 'destroy']);
 Route::post('/tags', [PublicaController::class, 'createTag'])->name('tags.create');
 
+// Rota para pesquisa
+Route::get('/pesquisar', [PublicaController::class, 'pesquisar'])->name('pesquisar');
+
 // Rota para logout
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 

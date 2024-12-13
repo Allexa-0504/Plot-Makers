@@ -48,13 +48,6 @@
                             <a href="https://www.instagram.com/plot_makers/"><span class="fa fa-instagram"></span></a>
 
                         </div>
-                        <div class="col-3 search-top">
-
-                            <form action="#" class="search-top-form">
-                                <span class="icon fa fa-search"></span>
-                                <input type="text" id="s" placeholder="Digite para pesquisar...">
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -127,8 +120,8 @@
                                     <a href="blog-single.html">
                                         <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url('{{asset('template/images/img_10.jpg')}}');"></div>
                                         <span class="text">
-                      <div class="post-meta">
-                        <span class="author mr-2"><img src="{{asset('template/images/person_1.jpg')}}" alt="Colorlib">Colorlib</span>&bullet;
+                                <div class="post-meta">
+                                        <span class="author mr-2"><img src="{{asset('template/images/person_1.jpg')}}" alt="Colorlib">Colorlib</span>&bullet;
                                         <span class="mr-2">15 de Março,2020</span> &bullet;
                                         <span class="mr-2">Plots</span> &bullet;
                                         <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
@@ -136,136 +129,14 @@
                                 <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
                                 </span>
                                 </a>
-                            </div>
+                                </div>
                             <!-- END post -->
 
-                            <div class="post-entry-horzontal">
-                                <a href="blog-single.html">
-                                    <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url({{asset('template/images/img_10.jpg')}});"></div>
-                                    <span class="text">
-                      <div class="post-meta">
-                        <span class="author mr-2"><img src="{{asset('template/images/person_1.jpg')}}" alt="Colorlib"> Colorlib</span>&bullet;
-                                    <span class="mr-2">15 de Março, 2020 </span> &bullet;
-                                    <span class="mr-2">Plots</span> &bullet;
-                                    <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                            </div>
-                            <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-                            </span>
-                            </a>
-                        </div>
                         <!-- END post -->
 
-                        <div class="post-entry-horzontal">
-                            <a href="blog-single.html">
-                                <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url({{asset('template/images/img_10.jpg')}});"></div>
-                                <span class="text">
-                      <div class="post-meta">
-                        <span class="author mr-2"><img src="{{asset('template/images/person_1.jpg')}}" alt="Colorlib"> Colorlib</span>&bullet;
-                                <span class="mr-2">15 de Março, 2020 </span> &bullet;
-                                <span class="mr-2">Construção</span> &bullet;
-                                <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                        </div>
-                        <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-                        </span>
-                        </a>
-                    </div>
-                    <!-- END post -->
-
-                    <div class="post-entry-horzontal">
-                        <a href="blog-single.html">
-                            <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url({{asset('template/images/img_10.jpg')}});"></div>
-                            <span class="text">
-                      <div class="post-meta">
-                        <span class="author mr-2"><img src="{{asset('template/images/person_1.jpg')}}" alt="Colorlib"> Colorlib</span>&bullet;
-                            <span class="mr-2">15 de Março, 2020 </span> &bullet;
-                            <span class="mr-2">Desenvolvimento</span> &bullet;
-                            <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                    </div>
-                    <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-                    </span>
-                    </a>
-                </div>
-                <!-- END post -->
-
-                <div class="post-entry-horzontal">
-                    <a href="blog-single.html">
-                        <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url({{asset('template/images/img_10.jpg')}});"></div>
-                        <span class="text">
-                      <div class="post-meta">
-                        <span class="author mr-2"><img src="{{asset('template/images/person_1.jpg')}}" alt="Colorlib"> Colorlib</span>&bullet;
-                        <span class="mr-2">15 de Março, 2020 </span> &bullet;
-                        <span class="mr-2">Encerramento</span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                </div>
-                <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-                </span>
-                </a>
-            </div>
             <!-- END post -->
 
-            <div class="post-entry-horzontal">
-                <a href="blog-single.html">
-                    <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url({{asset('template/images/img_10.jpg')}});"></div>
-                    <span class="text">
-                      <div class="post-meta">
-                        <span class="author mr-2"><img src="{{asset('template/images/person_1.jpg')}}" alt="Colorlib"> Colorlib</span>&bullet;
-                    <span class="mr-2">15 de Março, 2020 </span> &bullet;
-                    <span class="mr-2">Plot</span> &bullet;
-                    <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-            </div>
-            <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-            </span>
-            </a>
-    </div>
-    <!-- END post -->
-
-    <div class="post-entry-horzontal">
-        <a href="blog-single.html">
-            <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url({{asset('template/images/img_10.jpg')}});"></div>
-            <span class="text">
-                      <div class="post-meta">
-                        <span class="author mr-2"><img src="{{asset('template/images/person_1.jpg')}}" alt="Colorlib"> Colorlib</span>&bullet;
-            <span class="mr-2">15 de Março, 2020 </span> &bullet;
-            <span class="mr-2">Introdução</span> &bullet;
-            <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-    </div>
-    <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-    </span>
-    </a>
-    </div>
-    <!-- END post -->
-
-    <div class="post-entry-horzontal">
-        <a href="blog-single.html">
-            <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url({{asset('template/images/img_10.jpg')}});"></div>
-            <span class="text">
-                      <div class="post-meta">
-                        <span class="author mr-2"><img src="{{asset('template/images/person_1.jpg')}}" alt="Colorlib"> Colorlib</span>&bullet;
-            <span class="mr-2">15 de Março, 2020 </span> &bullet;
-            <span class="mr-2">Food</span> &bullet;
-            <span class="mr-2">Food</span> &bullet;
-            <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-    </div>
-    <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-    </span>
-    </a>
-    </div>
-    <!-- END post -->
-
-    <div class="post-entry-horzontal">
-        <a href="blog-single.html">
-            <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url({{asset('template/images/img_10.jpg')}});"></div>
-            <span class="text">
-                      <div class="post-meta">
-                        <span class="author mr-2"><img src="{{asset('template/images/person_1.jpg')}}" alt="Colorlib"> Colorlib</span>&bullet;
-            <span class="mr-2">15 de Março, 2020 </span> &bullet;
-            <span class="mr-2">Food</span> &bullet;
-            <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-    </div>
-    <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-    </span>
-    </a>
-    </div>
+          
     <!-- END post -->
 
     </div>
@@ -291,87 +162,7 @@
 
     </div>
 
-    <!-- END main-content -->
-
-
-    <!-- END sidebar-box -->
-
-    <!-- END sidebar-box -->
-    <div class="sidebar-box">
-        <h3 class="heading">Postagens Populares</h3>
-        <div class="post-entry-sidebar">
-            <ul>
-                <li>
-                    <a href="">
-                        <img src="{{asset('template/images/img_2.jpg')}}" alt="Image placeholder" class="mr-4">
-                        <div class="text">
-                            <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h4>
-                            <div class="post-meta">
-                                <span class="mr-2">15 de Março, 2020 </span>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <img src="{{asset('template/images/img_4.jpg')}}" alt="Image placeholder" class="mr-4">
-                        <div class="text">
-                            <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h4>
-                            <div class="post-meta">
-                                <span class="mr-2">15 de Março, 2020 </span>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <img src="{{asset('template/images/img_12.jpg')}}" alt="Image placeholder" class="mr-4">
-                        <div class="text">
-                            <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h4>
-                            <div class="post-meta">
-                                <span class="mr-2">15 de Março, 2020 </span>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!-- END sidebar-box -->
-
-    <div class="sidebar-box">
-        <h3 class="heading">Gêneros Literários</h3>
-        <ul class="categories">
-            <li><a href="#">Poema <span>(12)</span></a></li>
-            <li><a href="#">Conto <span>(22)</span></a></li>
-            <li><a href="#">Crônica <span>(37)</span></a></li>
-            <li><a href="#">Redação ENEM <span>(42)</span></a></li>
-            <li><a href="#">História Ficcional <span>(104)</span></a></li>
-            <li><a href="#">História Curta <span>(42)</span></a></li>
-            <li><a href="#">Haicai <span>(14)</span></a></li>
-        </ul>
-    </div>
-    <!-- END sidebar-box -->
-
-    <div class="sidebar-box">
-        <h3 class="heading">Tags</h3>
-        <ul class="tags">
-            <li><a href="#">Romance</a></li>
-            <li><a href="#">Aventura</a></li>
-            <li><a href="#">Ficção</a></li>
-            <li><a href="#">Não-Ficção</a></li>
-            <li><a href="#">Fantasia</a></li>
-            <li><a href="#">Sci-fi</a></li>
-            <li>
-                <a href="#">Terror</a>
-            </li>
-            <li><a href="#">Suspense</a></li>
-            <li><a href="#">Fanfic</a></li>
-            <li><a href="#">Novel</a></li>
-            <li><a href="#">Fábula</a></li>
-            <li><a href="#">Lenda</a></li>
-        </ul>
-    </div>
+    
     </div>
     <!-- END sidebar -->
 

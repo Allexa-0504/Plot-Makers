@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "57f154629e07a2ada2fd916f474ff53d",
+    "content-hash": "5767a4b818a6cc77b6defe44255c7358",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -3995,12 +3995,12 @@
             "type": "library",
             "extra": {
                 "laravel": {
-                    "providers": [
-                        "RealRashid\\SweetAlert\\SweetAlertServiceProvider"
-                    ],
                     "aliases": {
                         "Alert": "RealRashid\\SweetAlert\\Facades\\Alert"
-                    }
+                    },
+                    "providers": [
+                        "RealRashid\\SweetAlert\\SweetAlertServiceProvider"
+                    ]
                 }
             },
             "autoload": {

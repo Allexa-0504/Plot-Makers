@@ -23,6 +23,7 @@ class GeneroSeeder extends Seeder
             ['nome' => 'Ensaio'],
             ['nome' => 'Epístola'],
             ['nome' => 'Diálogo'],
+            ['nome' => 'Dica de escrita'],
             // Adicione mais gêneros conforme necessário
         ];
 

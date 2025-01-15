@@ -180,5 +180,4 @@
         selector: 'textarea#default-editor'
     });
 
-
 })(jQuery);

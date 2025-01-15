@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('template/fonts/flaticon/font/flaticon.css') }}">
     <link rel="icon" type="image/png" href="{{ asset('template/images/logoTcc (1).png') }}">
     <link rel="stylesheet" href="{{ asset('template/css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
 
 <body>
@@ -23,10 +24,6 @@
             <div class="top-bar">
                 <div class="container">
                     <div class="row">
-                        <div class="col-9 social">
-                            <a href="https://twitter.com/PlotMakers"><span class="fa fa-twitter"></span></a>
-                            <a href="https://www.instagram.com/plot_makers/"><span class="fa fa-instagram"></span></a>
-                        </div>
                         <div class="col-3 search-top">
                             <form action="{{ url('/pesquisar') }}" method="GET" class="search-top-form">
                                 <span class="icon fa fa-search"></span>
@@ -43,7 +40,9 @@
                     <div class="col-12 text-center">
                         <a class="absolute-toggle d-block d-md-none" data-toggle="collapse" href="#navbarMenu" role="button" aria-expanded="false" aria-controls="navbarMenu"><span class="burger-lines"></span></a>
                         <h1 class="site-logo">
-                            <a href="{{ url('/pagPrincip') }}"><img src="{{ asset('template/images/headerTcc__1_-removebg-preview.png') }}" alt=""></a>
+                            <a href="{{ url('/pagPrincip') }}">
+                                <img src="{{ asset('template/images/headerTcc__1_-removebg-preview.png') }}" alt="" class="img-fluid" style="max-width: 100%; height: auto;">
+                            </a>
                         </h1>
                     </div>
                 </div>
@@ -56,16 +55,8 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="{{ url('/') }}">Página Principal</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="{{ url('/dicas') }}" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dicas de escrita</a>
-                                <div class="dropdown-menu" aria-labelledby="dropdown04">
-                                    <a class="dropdown-item" href="{{ url('/dicas') }}">Personagens</a>
-                                    <a class="dropdown-item" href="{{ url('/dicas') }}">Capítulos</a>
-                                    <a class="dropdown-item" href="{{ url('/dicas') }}">Estrutura</a>
-                                    <a class="dropdown-item" href="{{ url('/dicas') }}">Desenvolvimento</a>
-                                    <a class="dropdown-item" href="{{ url('/dicas') }}">Plots</a>
-                                    <a class="dropdown-item" href="{{ url('/dicas') }}">Outros </a>
-                                </div>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/dicas-escrita') }}">Dicas de escrita</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/about') }}">Sobre</a>
@@ -77,6 +68,13 @@
                     </div>
                 </div>
             </nav>
+            <div class="fab" ontouchstart="">
+                <form action="{{ url('/edicao') }}">
+                    <button class="main" style="width: 70px; height: 70px; border-radius: 50%;">
+                        <img src="{{ asset('template/images/caneta-de-pena.png') }}" alt="" class="image-button">
+                    </button>
+                </form>
+            </div>
         </header>
 
         <main>
@@ -100,17 +98,10 @@
                                 <div class="mb-5">
                                     <h3>Links Rápidos</h3>
                                     <ul class="list-unstyled">
-                                        <li><a href="{{ url('/about') }}">Sobre nós</a></li>
+                                        <li><a href="{{ url('/about') }}">Sobre a plataforma</a></li>
                                         <li><a href="{{ url('/dicas') }}">Dicas de Escrita</a></li>
                                         <li><a href="{{ url('/perfil') }}">Perfil</a></li>
                                         <li><a href="{{ url('/pagPrincip') }}">Página Principal</a></li>
-                                    </ul>
-                                </div>
-                                <div class="mb-5">
-                                    <h3>Social</h3>
-                                    <ul class="list-unstyled footer-social">
-                                        <li><a href="https://twitter.com/PlotMakers"><span class="fa fa-twitter"></span> Twitter</a></li>
-                                        <li><a href="https://www.instagram.com/plot_makers/"><span class="fa fa-instagram"></span> Instagram</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -140,6 +131,7 @@
     <script src="{{ asset('template/js/jquery.waypoints.min.js') }}"></script>
     <script src="{{ asset('template/js/jquery.stellar.min.js') }}"></script>
     <script src="{{ asset('template/js/main.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

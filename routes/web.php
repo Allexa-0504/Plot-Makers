@@ -41,15 +41,22 @@ Route::delete('/historias/{id}', [PublicaController::class, 'destroy'])->name('h
 Route::post('/historia/{id}/comentarios', [ComentarioController::class, 'store'])->name('comentarios.store');
 Route::resource('comentarios', ComentarioController::class)->only(['edit', 'update', 'destroy']);
 Route::post('/tags', [PublicaController::class, 'createTag'])->name('tags.create');
+Route::get('/dicas-escrita', [PublicaController::class, 'historiasDicasEscrita'])->name('dicas.escrita');
+Route::get('/historias', [PublicaController::class, 'todasHistorias'])->name('historias.index');
 
 // Rota para pesquisa
 Route::get('/pesquisar', [PublicaController::class, 'pesquisar'])->name('pesquisar');
+Route::get('/pesquisar-dicas', [PublicaController::class, 'pesquisarDicas'])->name('pesquisar.dicas');
 
 // Rota para as páginas de genêro
 Route::get('/genero/{id}', [GeneroController::class, 'show'])->name('genero.show');
 
 // Rota para logout
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// Rotas de dicas
+/*Route::get('/dicas', [DicaController::class, 'index'])->name('dicas.index');
+Route::get('/dicas/{id}', [DicaController::class, 'show'])->name('dicas.show');*/
 
 // Rotas de recursos
 //Route::resource('perfil', UserController::class);

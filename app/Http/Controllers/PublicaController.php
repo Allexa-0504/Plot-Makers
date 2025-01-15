@@ -6,6 +6,7 @@ use App\Models\Genero;
 use App\Models\Historia; 
 use App\Models\Tag; 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PublicaController extends Controller
 {
@@ -15,9 +16,11 @@ class PublicaController extends Controller
         $generos = Genero::all(); // Buscando todos os gêneros
         $tags = Tag::all(); // Buscando todas as tags
 
-        return view('publicar', compact('conteudo', 'generos', 'tags'));
-    }
+        // Filtrar histórias para não incluir aquelas com genero_id igual a 11
+        $historiasDestaque = Historia::where('genero_id', '!=', 11)->get();
 
+        return view('publicar', compact('conteudo', 'generos', 'tags', 'historiasDestaque'));
+    }
     public function store(Request $request)
     {
         // Validação dos dados
@@ -57,8 +60,9 @@ class PublicaController extends Controller
                 $historia->tags()->attach($tag->id);
             }
         }
+        //Alert::success('Publicado!', 'Texto publicado com sucesso!');
 
-        return redirect()->route('publicar.index')->with('success', 'História publicada com sucesso!');
+        return redirect()->route('publicar.index');
     }
     public function createTag(Request $request)
     {
@@ -79,7 +83,8 @@ class PublicaController extends Controller
 
         // Verifica se o usuário logado é o autor da história
         if ($historia->usuario_id !== auth()->id()) {
-            return redirect()->route('pagPrincip')->with('error', 'Você não tem permissão para editar esta história.');
+            //Alert::error('Erro!', 'Você não tem permisão para editar essa história');
+            return redirect()->route('pagPrincip');
         }
 
         $generos = Genero::all(); // Buscando todos os gêneros
@@ -107,7 +112,8 @@ class PublicaController extends Controller
 
         // Verifica se o usuário logado é o autor da história
         if ($historia->usuario_id !== auth()->id()) {
-            return redirect()->route('pagPrincip')->with('error', 'Você não tem permissão para editar esta história.');
+            //Alert::error('Erro!', 'Você não tem permisão para editar essa história');
+            return redirect()->route('pagPrincip');
         }
 
         // Validação dos dados
@@ -143,7 +149,9 @@ class PublicaController extends Controller
             $historia->tags()->detach();
         }
 
-        return redirect()->route('pagPrincip')->with('success', 'História atualizada com sucesso!');
+        //Alert::success('Atualizado!', 'Texto atualizado com sucesso!');
+
+        return redirect()->route('pagPrincip');
     }
 
     public function destroy($id)
@@ -152,12 +160,50 @@ class PublicaController extends Controller
 
         // Verifica se o usuário logado é o autor da história
         if ($historia->usuario_id !== auth()->id()) {
-            return redirect()->route('perfil')->with('error', 'Você não tem permissão para excluir esta história.');
+            //Alert::error('Erro!', 'Você não tem permisão para excluir essa história');
+            return redirect()->route('perfil');
         }
 
         // Exclui a história
         $historia->delete();
 
-        return redirect()->route('perfil')->with('success', 'História excluída com sucesso!');
+        //Alert::success('Excluído!', 'Texto excluído com sucesso!');
+
+        return redirect()->route('perfil');
+    }
+
+    public function historiasDicasEscrita()
+    {
+        $genero = Genero::findOrFail(11);
+        $historias = Historia::where('genero_id', 11)->with('usuario', 'tags')->get();
+
+        // Adicione esta linha para depurar
+        //dd($historias);
+
+        return view('dicas', compact('genero', 'historias'));
+    }
+
+    public function pesquisarDicas(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Pesquisar histórias com genero_id igual a 11
+        $historias = Historia::where('genero_id', 11)
+            ->where('titulo', 'LIKE', "%{$query}%")
+            ->orWhere('conteudo', 'LIKE', "%{$query}%")
+            ->with('usuario', 'tags')
+            ->get();
+
+        return view('dicas', compact('historias'));
+    }
+
+    public function todasHistorias()
+    {
+        // Buscar todas as histórias, exceto aquelas com genero_id igual a 11
+        $historias = Historia::where('genero_id', '!=', 11)
+            ->with('usuario', 'tags') // Carregar usuário e tags relacionadas
+            ->get();
+
+        return view('historias.index', compact('historias'));
     }
 }
